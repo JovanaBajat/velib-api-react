@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import SearchInput from './components/SearchInput';
 import Display from './components/Display';
+// import Dialog from './components/Dialog';
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cityName : ''
+      cityName : '',
+      openDialog : false
     }
   }
 
@@ -18,16 +21,24 @@ class App extends Component {
     });
   }
 
+  handleOpen = () => {
+    this.setState({openDialog: true});
+  };
+
+  handleClose = () => {
+    this.setState({openDialog: false});
+  };
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-      <SearchInput input={this.inputCityName}/>
-      <Display name={this.state.cityName}/>
-      </div>
+      <MuiThemeProvider>
+        <div className="App">
+          <h1>Find a velib in Paris!</h1>
+          <SearchInput input={this.inputCityName}/>
+          <Display name={this.state.cityName} openDialog={this.state.openDialog} isOpen={this.handleOpen} isClosed={this.handleClose}/>
+        </div>
+      </MuiThemeProvider>
+
     );
   }
 }

@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
 
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+
+const style = {
+  margin: 12
+};
+
+
 class SearchInput extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +21,7 @@ class SearchInput extends Component {
     // json.parse(body).filter((station) => {
     // (/e.target.value) (object constructor regex)}
     // map sur le resultat map((e) => {})
-  
+
     this.setState({
       inputValue : e.target.value
     });
@@ -31,12 +39,18 @@ class SearchInput extends Component {
   render() {
     return (
       <form>
-        <input type="text" required
+        <TextField hintText='Type the City' type="text"
+        style={{width : '300px'}}
+        hintStyle={{ color: '#d0d4db', letterSpacing : '3px', width: '300px', textAlign : 'center'}}
+        inputStyle= {{ color: 'white', letterSpacing : '3px', fontSize : '23px', textAlign : 'center'}}
         onChange={this.handleInputChange}
         value={this.state.inputValue}/>
-        <button onClick={this.updateValue}>Find a velo</button>
-
-
+        <RaisedButton
+          label="Find a Velo"
+          type="submit"
+          primary={true}
+          style={style}
+        onClick={this.updateValue} />
       </form>
     );
   }
